@@ -11,7 +11,7 @@ public class CaixeiroViajante {
         Scanner Entrada = new Scanner(System.in);
         LeituraArquivo Leitura = new LeituraArquivo();
         float Matriz[][] = Leitura.LeArquivo();
-        Algoritmos Algoritmo = new Algoritmos(Matriz);
+        HeuristicasConstrutivas Algoritmo = new HeuristicasConstrutivas(Matriz);
         
         int i = 4;
         while(i != 0){
