@@ -40,10 +40,10 @@ public class CaixeiroViajante {
                     Algoritmo.Aleatorio();
                     break;
                 case 4:
-                    Algoritmo.ParcialmenteVizinhoMaisProximo((float) 0.2);
+                    Algoritmo.ParcialmenteVizinhoMaisProximo((float) 0.4);
                     break;
                 case 5:
-                    Algoritmo.InsercaoMaisBarataParcialmenteGuloso((float) 0.2);
+                    Algoritmo.InsercaoMaisBarataParcialmenteGuloso((float) 0.4);
                     break;
                 default:
                     System.out.println("Por favor entre com um tipo de dado válido.\n");

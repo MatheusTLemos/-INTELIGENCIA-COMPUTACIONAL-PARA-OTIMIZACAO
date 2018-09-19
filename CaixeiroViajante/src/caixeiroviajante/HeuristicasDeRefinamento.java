@@ -13,16 +13,19 @@ public class HeuristicasDeRefinamento {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> metodoDaDescida(ArrayList<Integer> solucao) {
-		System.out.println("refinando...");
+		
 		ArrayList<Integer> solucaoAlternativa;
 		ArrayList<Integer> menorSolucao = null;
 		float menorDistancia = calculaFuncaoObjetivo(solucao);
 		boolean ocorreuMudanca = false;
 
-		for (int aux = 0; aux < solucao.size(); aux++) {
-			for (int aux2 = aux + 1; aux2 < solucao.size(); aux2++) {
+		for (int aux = 0; aux < solucao.size() - 1; aux++) {
+			for (int aux2 = aux + 1; aux2 < solucao.size() - 1; aux2++) {
 				solucaoAlternativa = (ArrayList<Integer>) solucao.clone();
 				Collections.swap(solucaoAlternativa, aux, aux2);
+				if(aux == 0) {
+					solucaoAlternativa.set(solucaoAlternativa.size() - 1, solucaoAlternativa.get(0));
+				}
 				if (menorDistancia > calculaFuncaoObjetivo(solucaoAlternativa)) {
 					menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
 					menorDistancia = calculaFuncaoObjetivo(solucaoAlternativa);
@@ -38,16 +41,19 @@ public class HeuristicasDeRefinamento {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> metodoDaPrimeiraMelhora(ArrayList<Integer> solucao) {
-		System.out.println("refinando...");
+		
 		ArrayList<Integer> solucaoAlternativa;
 		ArrayList<Integer> menorSolucao = null;
 		float menorDistancia = calculaFuncaoObjetivo(solucao);
 		boolean ocorreuMudanca = false;
 
-		for (int aux = 0; aux < solucao.size(); aux++) {
-			for (int aux2 = aux + 1; aux2 < solucao.size(); aux2++) {
+		for (int aux = 0; aux < solucao.size() - 1; aux++) {
+			for (int aux2 = aux + 1; aux2 < solucao.size() - 1; aux2++) {
 				solucaoAlternativa = (ArrayList<Integer>) solucao.clone();
 				Collections.swap(solucaoAlternativa, aux, aux2);
+				if(aux == 0) {
+					solucaoAlternativa.set(solucaoAlternativa.size() - 1, solucaoAlternativa.get(0));
+				}
 				if (menorDistancia > calculaFuncaoObjetivo(solucaoAlternativa)) {
 					menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
 					menorDistancia = calculaFuncaoObjetivo(solucaoAlternativa);
@@ -67,13 +73,13 @@ public class HeuristicasDeRefinamento {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Integer> metodoAleatorio(ArrayList<Integer> solucao, int iteracoes) {
-		System.out.println("refinando...");
+		
 		ArrayList<Integer> solucaoAlternativa;
 		ArrayList<Integer> menorSolucao = (ArrayList<Integer>) solucao.clone();
 		float menorDistancia = calculaFuncaoObjetivo(solucao);
 		Random Gerador = new Random();
 		
-		for ( ; iteracoes>0; iteracoes--) {
+		for (int aux=0; aux < iteracoes ; aux++) {
 			int rand1 = Gerador.nextInt(solucao.size());
 			int rand2 = Gerador.nextInt(solucao.size());
 			
@@ -87,6 +93,7 @@ public class HeuristicasDeRefinamento {
 			if (menorDistancia > calculaFuncaoObjetivo(solucaoAlternativa)) {
 				menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
 				menorDistancia = calculaFuncaoObjetivo(solucaoAlternativa);
+				aux = 0;
 			}
 		}
 		return menorSolucao;

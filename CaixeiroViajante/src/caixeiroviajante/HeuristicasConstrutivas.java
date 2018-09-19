@@ -3,6 +3,7 @@ package caixeiroviajante;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 public class HeuristicasConstrutivas {
 
@@ -41,7 +42,39 @@ public class HeuristicasConstrutivas {
 		}
 		Solucao.add(0);
 		
-		Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao); //refinamento
+		System.out.println("Solucao não  refinada");
+		calculaFuncaoObjetivo(Solucao);
+		
+		int userChoice = -1;
+		Scanner Entrada = new Scanner(System.in);
+		
+		while(userChoice != 1 && userChoice != 2 && userChoice != 3) {
+			System.out.println("Escolha uma heuristica de refinamento");
+			System.out.println("1-Metodo da descida");
+			System.out.println("2-Metodo da primeira melhora");
+			System.out.println("3-Metodo Aleatorio");
+			
+			userChoice = Entrada.nextInt();
+			
+			switch(userChoice) {
+			case 1:
+				Solucao = refinamento.metodoDaDescida(Solucao);
+				break;
+			case 2:
+				Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao);
+				break;
+			case 3:
+				int iteracoes;
+				System.out.println("Numero de iteracoes");
+				iteracoes = Entrada.nextInt();
+				Solucao = refinamento.metodoAleatorio(Solucao, iteracoes);
+				break;
+			default:
+				System.out.println("Entrada invalida");
+			}
+		}
+		
+		Solucao = refinamento.metodoDaDescida(Solucao); //refinamento
 		
 		long fim = System.currentTimeMillis();
 
@@ -95,7 +128,39 @@ public class HeuristicasConstrutivas {
 		}
 		Solucao.add(0);
 		
-		Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao); //refinamento
+		System.out.println("Solucao não  refinada");
+		calculaFuncaoObjetivo(Solucao);
+		
+		int userChoice = -1;
+		Scanner Entrada = new Scanner(System.in);
+		
+		while(userChoice != 1 && userChoice != 2 && userChoice != 3) {
+			System.out.println("Escolha uma heuristica de refinamento");
+			System.out.println("1-Metodo da descida");
+			System.out.println("2-Metodo da primeira melhora");
+			System.out.println("3-Metodo Aleatorio");
+			
+			userChoice = Entrada.nextInt();
+			
+			switch(userChoice) {
+			case 1:
+				Solucao = refinamento.metodoDaDescida(Solucao);
+				break;
+			case 2:
+				Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao);
+				break;
+			case 3:
+				int iteracoes;
+				System.out.println("Numero de iteracoes");
+				iteracoes = Entrada.nextInt();
+				Solucao = refinamento.metodoAleatorio(Solucao, iteracoes);
+				break;
+			default:
+				System.out.println("Entrada invalida");
+			}
+		}
+		
+		
 		
 		long fim = System.currentTimeMillis();
 
@@ -155,7 +220,39 @@ public class HeuristicasConstrutivas {
 			Solucao.add(arestaParaInsercao + 1, cidadeMaisBarata);
 		}
 		
-		Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao); //refinamento
+		System.out.println("Solucao não  refinada");
+		calculaFuncaoObjetivo(Solucao);
+		
+		int userChoice = -1;
+		Scanner Entrada = new Scanner(System.in);
+		
+		while(userChoice != 1 && userChoice != 2 && userChoice != 3) {
+			System.out.println("Escolha uma heuristica de refinamento");
+			System.out.println("1-Metodo da descida");
+			System.out.println("2-Metodo da primeira melhora");
+			System.out.println("3-Metodo Aleatorio");
+			
+			userChoice = Entrada.nextInt();
+			
+			switch(userChoice) {
+			case 1:
+				Solucao = refinamento.metodoDaDescida(Solucao);
+				break;
+			case 2:
+				Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao);
+				break;
+			case 3:
+				int iteracoes;
+				System.out.println("Numero de iteracoes");
+				iteracoes = Entrada.nextInt();
+				Solucao = refinamento.metodoAleatorio(Solucao, iteracoes);
+				break;
+			default:
+				System.out.println("Entrada invalida");
+			}
+		}
+		
+		
 
 		long fim = System.currentTimeMillis();
 
@@ -217,7 +314,39 @@ public class HeuristicasConstrutivas {
 			Solucao.add(insercaoEscolhida.getAresta() + 1, insercaoEscolhida.getCidade());
 		}
 		
-		Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao); //refinamento
+		System.out.println("Solucao não  refinada");
+		calculaFuncaoObjetivo(Solucao);
+		
+		int userChoice = -1;
+		Scanner Entrada = new Scanner(System.in);
+		
+		while(userChoice != 1 && userChoice != 2 && userChoice != 3) {
+			System.out.println("Escolha uma heuristica de refinamento");
+			System.out.println("1-Metodo da descida");
+			System.out.println("2-Metodo da primeira melhora");
+			System.out.println("3-Metodo Aleatorio");
+			
+			userChoice = Entrada.nextInt();
+			
+			switch(userChoice) {
+			case 1:
+				Solucao = refinamento.metodoDaDescida(Solucao);
+				break;
+			case 2:
+				Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao);
+				break;
+			case 3:
+				int iteracoes;
+				System.out.println("Numero de iteracoes");
+				iteracoes = Entrada.nextInt();
+				Solucao = refinamento.metodoAleatorio(Solucao, iteracoes);
+				break;
+			default:
+				System.out.println("Entrada invalida");
+			}
+		}
+		
+		
 		
 		long fim = System.currentTimeMillis();
 
@@ -256,8 +385,40 @@ public class HeuristicasConstrutivas {
 			}
 		}
 		Solucao.add(0);
+
+		System.out.println("Solucao não  refinada");
+		calculaFuncaoObjetivo(Solucao);
 		
-		Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao); //refinamento
+		int userChoice = -1;
+		Scanner Entrada = new Scanner(System.in);
+		
+		while(userChoice != 1 && userChoice != 2 && userChoice != 3) {
+			System.out.println("Escolha uma heuristica de refinamento");
+			System.out.println("1-Metodo da descida");
+			System.out.println("2-Metodo da primeira melhora");
+			System.out.println("3-Metodo Aleatorio");
+			
+			userChoice = Entrada.nextInt();
+			
+			switch(userChoice) {
+			case 1:
+				Solucao = refinamento.metodoDaDescida(Solucao);
+				break;
+			case 2:
+				Solucao = refinamento.metodoDaPrimeiraMelhora(Solucao);
+				break;
+			case 3:
+				int iteracoes;
+				System.out.println("Numero de iteracoes");
+				iteracoes = Entrada.nextInt();
+				Solucao = refinamento.metodoAleatorio(Solucao, iteracoes);
+				break;
+			default:
+				System.out.println("Entrada invalida");
+			}
+		}
+		
+		
 		
 		long fim = System.currentTimeMillis();
 
