@@ -4,4 +4,6 @@ Trabalhos praticos da disciplina de Inteligencia Computacional para Otimização
 
 Caio Caldeira Vieira
 
+Gabriel Magalhães Menezes Camilo
+
 Matheus Teixeira Lemos
