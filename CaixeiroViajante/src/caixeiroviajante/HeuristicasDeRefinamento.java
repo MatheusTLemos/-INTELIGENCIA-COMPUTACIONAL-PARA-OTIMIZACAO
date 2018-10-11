@@ -98,6 +98,40 @@ public class HeuristicasDeRefinamento {
 		}
 		return menorSolucao;
 	}
+        
+        @SuppressWarnings("unchecked")
+        public ArrayList<Integer> metodoVND(ArrayList<Integer> solucao){
+            Random Gerador = new Random();
+            ArrayList<Integer> solucaoAlternativa;
+            for(int i = 0; i < 5; i++){
+                solucaoAlternativa = (ArrayList<Integer>) solucao.clone();
+                for(int j = 0; j <= i; j++){
+                    int rand1 = Gerador.nextInt(solucao.size());
+                    int rand2 = Gerador.nextInt(solucao.size());
+                    
+                    while(rand1==rand2) {
+			rand2 = Gerador.nextInt(solucao.size());
+                    }
+                    
+                    if((rand1 == 0 || rand2 == 0) && (rand2 != solucao.size()-1) || rand1 != solucao.size()-1){
+                        Collections.swap(solucaoAlternativa, rand1, rand2);
+                        solucaoAlternativa.set(solucaoAlternativa.size() - 1, solucaoAlternativa.get(0));
+                    }else if((rand1 == solucao.size()-1 || rand2 == solucao.size()-1) && (rand2 != 0 || rand1 != 0)){
+                        Collections.swap(solucaoAlternativa, rand1, rand2);
+                        solucaoAlternativa.set(0, solucaoAlternativa.get(solucaoAlternativa.size() - 1));
+                    }else{
+                        Collections.swap(solucaoAlternativa, rand1, rand2);
+                    }
+                }
+                solucaoAlternativa = metodoDaDescida(solucaoAlternativa);
+                
+                if(calculaFuncaoObjetivo(solucao) > calculaFuncaoObjetivo(solucaoAlternativa)){
+                    solucao = solucaoAlternativa;
+                    i = 0;
+                }
+            }
+            return solucao;
+        }
 
 	public float calculaFuncaoObjetivo(ArrayList<Integer> Solucao) {
 		float distancia = 0;
