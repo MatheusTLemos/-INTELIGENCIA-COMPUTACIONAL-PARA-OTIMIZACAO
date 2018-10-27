@@ -45,6 +45,9 @@ public class CaixeiroViajante {
                 case 5:
                     Algoritmo.InsercaoMaisBarataParcialmenteGuloso((float) 0.4);
                     break;
+                case 6:
+                    
+               
                 default:
                     System.out.println("Por favor entre com um tipo de dado válido.\n");
                     break;
