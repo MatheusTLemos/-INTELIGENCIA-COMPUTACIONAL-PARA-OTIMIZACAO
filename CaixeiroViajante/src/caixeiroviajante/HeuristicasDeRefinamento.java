@@ -1,11 +1,8 @@
 package caixeiroviajante;
 
-import com.sun.glass.ui.Size;
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 public class HeuristicasDeRefinamento {
@@ -139,19 +136,26 @@ public class HeuristicasDeRefinamento {
         return solucao;
     }
 
-    public ArrayList<Integer> metodoTabu(ArrayList<Integer> solucao, int BTmax) {
+    @SuppressWarnings("unchecked")
+	public ArrayList<Integer> metodoTabu(ArrayList<Integer> solucao, int BTmax) {
         int iter = 0;
         int melhorInt = 0;
 
         LinkedList<Object> tabu = new LinkedList<Object>();
+        ArrayList<Integer> melhorSolucao = (ArrayList<Integer>) solucao.clone();
+
+        ArrayList<Integer> solucaoAlternativa = (ArrayList<Integer>) solucao.clone();
 
         while (iter - melhorInt <= BTmax) {
             iter++;
-
-            ArrayList<Integer> solucaoAlternativa = (ArrayList<Integer>) solucao.clone();
-            ArrayList<Integer> menorSolucao = (ArrayList<Integer>) solucao.clone();
+            
+            ArrayList<Integer> menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
             float menorDistancia = Float.MAX_VALUE;
-
+            
+            if (tabu.size() > 150) {
+            	tabu.clear();
+            }
+            
             for (int aux = 0; aux < solucao.size() - 1; aux++) {
                 for (int aux2 = aux + 1; aux2 < solucao.size() - 1; aux2++) {
                     solucaoAlternativa = (ArrayList<Integer>) menorSolucao.clone();
@@ -160,37 +164,27 @@ public class HeuristicasDeRefinamento {
                         solucaoAlternativa.set(solucaoAlternativa.size() - 1, solucaoAlternativa.get(0));
                     }
                     if (menorDistancia > calculaFuncaoObjetivo(solucaoAlternativa)) {
-                        menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
-                        menorDistancia = calculaFuncaoObjetivo(solucaoAlternativa);
-                        //armazenar troca    
+                    	if (!tabu.contains(solucaoAlternativa)) {
+                    		menorSolucao = (ArrayList<Integer>) solucaoAlternativa.clone();
+                        	menorDistancia = calculaFuncaoObjetivo(solucaoAlternativa);
+                    	}
                     }
                 }
             }
 
-            if (calculaFuncaoObjetivo(solucao) > calculaFuncaoObjetivo(solucaoAlternativa)) {
+            tabu.add(menorSolucao);
+            
+            if (calculaFuncaoObjetivo(melhorSolucao) > calculaFuncaoObjetivo(menorSolucao)) {
 
-                solucao = solucaoAlternativa;
                 melhorInt = iter;
-                tabu.add(solucaoAlternativa);
+                melhorSolucao = menorSolucao;
 
-            } else if (!tabu.contains(solucaoAlternativa)) {
-
-                solucao = solucaoAlternativa;
-                //Nesse caso nao se coloca melhorInt=iter porque nao é a melhor interação,somente aceitou por nao
-                // estar contido na lista tabu.
             }
-
-            if (tabu.size() > 15) {
-                while (tabu.isEmpty()) {
-                    tabu.remove();
-                }
-            }
+            
+            solucaoAlternativa = (ArrayList<Integer>) menorSolucao.clone();
         }
-
-        System.out.println("tamanho da lista tabu = " + tabu.size());
-        System.out.println(calculaFuncaoObjetivo(solucao));
         
-        return solucao;
+        return melhorSolucao;
     }
 
     public float calculaFuncaoObjetivo(ArrayList<Integer> Solucao) {
